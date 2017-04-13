@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!--  sample
+<element  xpath = "//*[text()='请选择疗程卡项目']/following-sibling::div[2]/button[1]">confirmAddComboItem</element>
+<element xpath = "//span[contains(@class,'highlight totalMoney')]">inventoryAssets</element>
+<element  xpath = "//*[@id='code_view_product' and @class='code_view out']//div[text()='非卖品']">subNoSaleExp</element>
+<element xpath = "//*[text() = '项目三项']/parent::*/following-sibling::div[5]">additem3button</element>
+<element xpath = "//td[text()='管理员']//preceding-sibling::td[2]/input">selectAdminRight</element>
+-->
+
+<elements>
+    <!-- 登录页面-->
+    <!--用户名-->
+    <element id = "email">account</element>
+    <!--密码-->
+    <element id = "pwd">password</element>
+    <!--登录按钮-->
+    <element id = "submit_btn">submit_btn</element>
+
+</elements>

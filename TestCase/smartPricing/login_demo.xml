@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<CASE CaseName="demo" author = "jianwen">	
+ <STEPS>	
+  <STEP index="1" Category="interaction">	
+   <Object PST=""></Object>	
+   <Action>get</Action>	
+   <parameter>smartPricing</parameter>	
+  </STEP>	
+  <STEP index="3" Category="interaction">	
+   <Object PST="smartPricing_login">account</Object>	
+   <Action>sendkeys</Action>	
+   <parameter>admin</parameter>	
+  </STEP>	
+  <STEP index="5" Category="interaction">	
+   <Object PST="smartPricing_login">password</Object>	
+   <Action>sendkeys</Action>	
+   <parameter>ne888888</parameter>	
+  </STEP>	
+  <STEP index="7" Category="interaction">	
+   <Object PST="smartPricing_login">submit_btn</Object>	
+   <Action>click</Action>	
+  </STEP>	
+ </STEPS>	
+</CASE>

@@ -1,0 +1,5 @@
+caseName : login_demo
+step 1 ------> login smartPricing
+step 3 ------> account sendkeys admin
+step 5 ------> password sendkeys ne888888
+step 7 ------> submit_btn click 

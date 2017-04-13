@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>	
+<CASE CaseName="demo" author = "jianwen">	
+ <STEPS>	
+  <STEP index="1" Category="interaction">	
+   <Object PST="mgmt"></Object>	
+   <Action>get</Action>	
+   <parameter>mgmt</parameter>	
+  </STEP>	
+  <STEP index="2" Category="interaction">	
+   <Object PST="mgmt"></Object>	
+   <Action>sleep</Action>	
+   <parameter>3000</parameter>	
+  </STEP>	
+  <STEP index="3" Category="interaction">	
+   <Object PST="mgmt">account</Object>	
+   <Action>sendkeys</Action>	
+   <parameter>zhangsan</parameter>	
+  </STEP>	
+  <STEP index="4" Category="interaction">	
+   <Object PST="mgmt"></Object>	
+   <Action>sleep</Action>	
+   <parameter>1000</parameter>	
+  </STEP>	
+  <STEP index="5" Category="interaction">	
+   <Object PST="mgmt">password</Object>	
+   <Action>sendkeys</Action>	
+   <parameter>888888</parameter>	
+  </STEP>	
+  <STEP index="6" Category="interaction">	
+   <Object PST="mgmt"></Object>	
+   <Action>sleep</Action>	
+   <parameter>1000</parameter>	
+  </STEP>	
+  <STEP index="7" Category="interaction">	
+   <Object PST="mgmt">login</Object>	
+   <Action>click</Action>	
+  </STEP>	
+  <STEP index="8" Category="interaction">	
+   <Object PST="mgmt"></Object>	
+   <Action>sleep</Action>	
+   <parameter>3000</parameter>	
+  </STEP>	
+  <STEP index="2" Category="interaction">	
+   <Object PST="mgmt">login-validate</Object>	
+   <Action>validate</Action>	
+   <ExpectedResult>帐号输入错误,请重新输入!</ExpectedResult>	
+  </STEP>	
+ </STEPS>	
+</CASE>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite errors="0" failures="0" hostname="jianwen" name="Rui.Mummy" skipped="0" tests="1" time="8.656" timestamp="2017-04-13T02:10:50">
+  <properties>
+    <property name="java.vendor" value="Oracle Corporation" />
+    <property name="sun.java.launcher" value="SUN_STANDARD" />
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers" />
+    <property name="os.name" value="Windows 10" />
+    <property name="sun.boot.class.path" value="D:\Program Files (x86)\java\jre\lib\resources.jar;D:\Program Files (x86)\java\jre\lib\rt.jar;D:\Program Files (x86)\java\jre\lib\sunrsasign.jar;D:\Program Files (x86)\java\jre\lib\jsse.jar;D:\Program Files (x86)\java\jre\lib\jce.jar;D:\Program Files (x86)\java\jre\lib\charsets.jar;D:\Program Files (x86)\java\jre\lib\jfr.jar;D:\Program Files (x86)\java\jre\classes" />
+    <property name="report" value="Report" />
+    <property name="sun.desktop" value="windows" />
+    <property name="java.vm.specification.vendor" value="Oracle Corporation" />
+    <property name="ant.home" value="D:\Program Files (x86)\apache-ant-1.9.7" />
+    <property name="java.runtime.version" value="1.8.0_112-b15" />
+    <property name="user.name" value="Administrator" />
+    <property name="report.xml" value="Report/selenium/xml" />
+    <property name="user.language" value="zh" />
+    <property name="sun.boot.library.path" value="D:\Program Files (x86)\java\jre\bin" />
+    <property name="ant.file.rui" value="E:\AutoFuncTest\build.xml" />
+    <property name="ant.project.default-target" value="Ruitest" />
+    <property name="ant.project.name" value="rui" />
+    <property name="java.version" value="1.8.0_112" />
+    <property name="user.timezone" value="" />
+    <property name="sun.arch.data.model" value="64" />
+    <property name="java.endorsed.dirs" value="D:\Program Files (x86)\java\jre\lib\endorsed" />
+    <property name="sun.cpu.isalist" value="amd64" />
+    <property name="sun.jnu.encoding" value="GBK" />
+    <property name="file.encoding.pkg" value="sun.io" />
+    <property name="file.separator" value="\" />
+    <property name="java.specification.name" value="Java Platform API Specification" />
+    <property name="java.class.version" value="52.0" />
+    <property name="user.country" value="CN" />
+    <property name="java.home" value="D:\Program Files (x86)\java\jre" />
+    <property name="java.vm.info" value="mixed mode" />
+    <property name="ant.file" value="E:\AutoFuncTest\build.xml" />
+    <property name="os.version" value="10.0" />
+    <property name="path.separator" value=";" />
+    <property name="java.vm.version" value="25.112-b15" />
+    <property name="user.variant" value="" />
+    <property name="ant.library.dir" value="D:\Program Files (x86)\apache-ant-1.9.7\lib" />
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob" />
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle" />
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
+    <property name="sun.stdout.encoding" value="ms936" />
+    <property name="user.script" value="" />
+    <property name="user.home" value="C:\Users\Administrator" />
+    <property name="java.specification.vendor" value="Oracle Corporation" />
+    <property name="ant.file.type.rui" value="file" />
+    <property name="java.library.path" value="D:\Program Files (x86)\java\jre\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;D:\Program Files (x86)\HP\NV\lib\shunra\vcat;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;D:\Program Files (x86)\java\bin;D:\Program Files (x86)\java\jre\bin;D:\Program Files (x86)\Python35;D:\Program Files (x86)\TortoiseSVN\bin;D:\Program Files (x86)\apache-ant-1.9.7\bin;D:\Program Files (x86)\nodejs;C:\Users\Administrator\Desktop;D:\Program Files (x86)\HP\LoadRunner\strawberry-perl\perl\bin;D:\Program Files (x86)\HP\NV\lib\thirdparty\safenet\LDK\7.0;D:\Program Files (x86)\HP\NV\lib\shunra\snv;D:\Program Files (x86)\Git\cmd;C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps;C:\Users\Administrator\AppData\Roaming\npm;C:\Users\Administrator\AppData\Local\atom\bin;." />
+    <property name="java.vendor.url" value="http://java.oracle.com/" />
+    <property name="java.vm.vendor" value="Oracle Corporation" />
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner Rui.Mummy skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=false formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,E:\AutoFuncTest\Report\selenium\xml\TEST-Rui.Mummy.xml crashfile=E:\AutoFuncTest\junitvmwatcher8351025563462064395.properties propsfile=E:\AutoFuncTest\junit5310835388776851668.properties" />
+    <property name="java.class.path" value="E:\AutoFuncTest\bin;E:\AutoFuncTest\libs\dom4j-1.6.1.jar;E:\AutoFuncTest\libs\jxl.jar;E:\AutoFuncTest\libs\selenium-server-standalone-2.42.2.jar;E:\AutoFuncTest\libs\junit.jar;E:\AutoFuncTest\libs\org.hamcrest.core_1.3.0.v201303031735.jar;E:\AutoFuncTest\libs\rt.jar;D:\Program Files (x86)\apache-ant-1.9.7\lib\ant-launcher.jar;D:\Program Files (x86)\apache-ant-1.9.7\lib\ant.jar;D:\Program Files (x86)\apache-ant-1.9.7\lib\ant-junit.jar;D:\Program Files (x86)\apache-ant-1.9.7\lib\ant-junit4.jar" />
+    <property name="ant.version" value="Apache Ant(TM) version 1.9.7 compiled on April 9 2016" />
+    <property name="report.html" value="Report/selenium/html" />
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification" />
+    <property name="ant.file.type" value="file" />
+    <property name="java.vm.specification.version" value="1.8" />
+    <property name="sun.cpu.endian" value="little" />
+    <property name="sun.os.patch.level" value="" />
+    <property name="java.io.tmpdir" value="C:\Users\ADMINI~1\AppData\Local\Temp\" />
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
+    <property name="os.arch" value="amd64" />
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment" />
+    <property name="java.ext.dirs" value="D:\Program Files (x86)\java\jre\lib\ext;C:\WINDOWS\Sun\Java\lib\ext" />
+    <property name="user.dir" value="E:\AutoFuncTest" />
+    <property name="line.separator" value="&#xd;&#xa;" />
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM" />
+    <property name="basedir" value="E:\AutoFuncTest" />
+    <property name="ant.java.version" value="1.8" />
+    <property name="ant.core.lib" value="D:\Program Files (x86)\apache-ant-1.9.7\lib\ant.jar" />
+    <property name="sun.stderr.encoding" value="ms936" />
+    <property name="file.encoding" value="GBK" />
+    <property name="java.specification.version" value="1.8" />
+    <property name="ant.project.invoked-targets" value="Ruitest" />
+  </properties>
+  <testcase classname="Rui.Mummy" name="test[0]" time="7.031" />
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Starting ChromeDriver 2.29.461591 (62ebf098771772160f391d75e589dc567915b233) on port 64872
+Only local connections are allowed.
+]]></system-err>
+</testsuite>
