@@ -1,13 +1,15 @@
 package Rui;
 
 import  java.io.*;
-import static Rui.Env.env;
+import java.util.HashMap;
+
 import jxl.Cell;
 import  jxl.Sheet;
 import  jxl.Workbook;
 
 public class GetCase {
-	public static void getCase(String parent,String child) {
+
+	public void getCase(String parent,String child) {
 		File xml = new File("TestCase" + File.separator + parent,child.replace("xls","xml"));
 		if(xml.exists()) xml.delete();
 		try {
@@ -42,7 +44,8 @@ public class GetCase {
 		} finally {		
 		}
 	}
-	public static void getInteraction(OutputStreamWriter osw,Sheet sheet,int i,int parCol) {
+
+	public void getInteraction(OutputStreamWriter osw,Sheet sheet,int i,int parCol) {
 		try {
 			osw.write("  <STEP index=\"" + sheet.getCell(0,i).getContents() + "\" Category=\"" + sheet.getCell(1,i).getContents() + "\">\t\n");
 			osw.write("   <Object PST=\""+ sheet.getCell(2,i).getContents() +"\">" + sheet.getCell(3,i).getContents() + "</Object>\t\n");
@@ -63,7 +66,8 @@ public class GetCase {
 		
 	}
 	
-	public static void getTemplate(OutputStreamWriter osw,Sheet sheet,int i,int parCol) {
+	public void getTemplate(OutputStreamWriter osw,Sheet sheet,int i,int parCol) {
+        HashMap hs = new Env().env();
 		try {
 			File template = new File("Template" + File.separator + sheet.getCell(2,i).getContents(),sheet.getCell(3,i).getContents() + ".xls");
 			Sheet templateXls  =  Workbook.getWorkbook(template).getSheet(0);	
@@ -71,7 +75,7 @@ public class GetCase {
 			String parArrayName = sheet.getCell(parCol,i).getContents();
 			Cell[] parArrayNames = templateXls.getRow(0);
 			for(int ArrayNames=0;ArrayNames<parArrayNames.length;ArrayNames++) {
-				if((!parArrayNames[ArrayNames].getContents().isEmpty())&&parArrayNames[ArrayNames].getContents().equals(env().get("env") + "::" + parArrayName)) {
+				if((!parArrayNames[ArrayNames].getContents().isEmpty())&&parArrayNames[ArrayNames].getContents().equals(hs.get("env") + "::" + parArrayName)) {
 					TempParameterCol = ArrayNames;
 				} else {
 					continue;
@@ -100,7 +104,7 @@ public class GetCase {
 
 	}
 	
-	public static void getSql(OutputStreamWriter osw,Sheet sheet,int i,int parCol) {
+	public void getSql(OutputStreamWriter osw,Sheet sheet,int i,int parCol) {
 		try {
 			osw.write("  <STEP index=\"" + sheet.getCell(0,i).getContents() + "\" Category=\"" + sheet.getCell(1,i).getContents() + "\">\t\n");
 			osw.write("   <Object PST=\""+ sheet.getCell(2,i).getContents() +"\">" + sheet.getCell(3,i).getContents() + "</Object>\t\n");

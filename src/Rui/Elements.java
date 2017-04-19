@@ -16,9 +16,9 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.WebDriver;
 
 public class Elements {
-	public static HashMap<String, List<Element>> pages = new HashMap<String, List<Element>>();
 	@SuppressWarnings("unchecked")
-	public static HashMap<String, List<Element>> elements() {
+    public HashMap<String, List<Element>> elements() {
+		HashMap<String, List<Element>> pages = new HashMap<String, List<Element>>();
 		for(File page:new File("Page").listFiles()) {
 			try {
 				pages.put(page.getName().split("\\.")[0],new SAXReader().read(page).getRootElement().elements());
@@ -28,25 +28,25 @@ public class Elements {
 		}
 		return pages;
 	}
-	
-	public static WebElement webEle(WebDriver driver,Element step,File snapcase) {
+
+	public WebElement webEle(WebDriver driver, Element step, File snapcase) {
 		if(step == null) {
 			System.out.println("step is null, please check case");
 			snapShot((TakesScreenshot)driver, snapcase);
 			Assert.fail();
 		}		
 		WebElement webEle = null;
-		if((step2PageElement(driver,step,snapcase).attributeValue("id")!= null) && (!step2PageElement(driver,step,snapcase).attributeValue("id").isEmpty())){
+		if((step2PageElement(step).attributeValue("id")!= null) && (!step2PageElement(step).attributeValue("id").isEmpty())){
 			try {
-				webEle = driver.findElement(By.id(step2PageElement(driver,step,snapcase).attributeValue("id")));
+				webEle = driver.findElement(By.id(step2PageElement(step).attributeValue("id")));
 			} catch (NoSuchElementException e) {
 				System.out.println(e.toString());
 				snapShot((TakesScreenshot)driver, snapcase);
 				Assert.fail();
 			}
-		}	else if((step2PageElement(driver,step,snapcase).attributeValue("xpath")!= null) && (!step2PageElement(driver,step,snapcase).attributeValue("xpath").isEmpty())){
+		}	else if((step2PageElement(step).attributeValue("xpath")!= null) && (!step2PageElement(step).attributeValue("xpath").isEmpty())){
 			try {
-				webEle = driver.findElement(By.xpath(step2PageElement(driver,step,snapcase).attributeValue("xpath")));
+				webEle = driver.findElement(By.xpath(step2PageElement(step).attributeValue("xpath")));
 			} catch (NoSuchElementException e) {
 				System.out.println(e.toString());
 				snapShot((TakesScreenshot)driver, snapcase);
@@ -74,34 +74,39 @@ public class Elements {
 			}
 		}	
 	}
-	
-	public static Element step2PageElement(WebDriver driver,Element step,File snapcase) {
-		Element pageElement = null;
+
+	public  Element step2PageElement(Element step) {
+		Element pageElement;
 		Element target = null;
 		if(step.attributeValue("Category").equals("interaction")) {
 		for(Iterator<Element> it=elements().get(step.element("Object").attributeValue("PST")).iterator();it.hasNext();){
-				 pageElement = (Element) it.next();
+				 pageElement = it.next();
                 if(pageElement.getText().equals(step.element("Object").getText())) {
                 	target = pageElement;
-                }	else {
-                	continue;
                 }
-             }
-			 
-			 if(target == null) {
+        } if(target == null) {
 				 System.out.println("can not find element's configuration in xml page");
-				 snapShot((TakesScreenshot)driver, snapcase);
 				 Assert.fail();
-				 return null;
-			 } else {
-				 return target;
 			 }
-			 
 		} else {
 			System.out.println("not interaction");
-			 snapShot((TakesScreenshot)driver, snapcase);
 			 Assert.fail();
-			return null;
-		}
+		} return target;
 	}
+
+    public By getBy(Element step) {
+        if (step == null) {
+            System.out.println("step is null, please check case");
+            Assert.fail();
+        } By by = null;
+        if ((step2PageElement(step).attributeValue("id") != null) && (!step2PageElement(step).attributeValue("id").isEmpty())) {
+            by = By.id(step2PageElement(step).attributeValue("id"));
+        } else if ((step2PageElement(step).attributeValue("xpath") != null) && (!step2PageElement(step).attributeValue("xpath").isEmpty())) {
+            by = By.xpath(step2PageElement(step).attributeValue("xpath"));
+        } else {
+            System.out.println("only get the webElement by id or xpath now,please check the xml page");
+            Assert.fail();
+        }   return by;
+    }
+
 }

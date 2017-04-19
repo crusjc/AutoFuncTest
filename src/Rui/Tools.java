@@ -21,7 +21,7 @@ public class Tools {
         } finally {
 	    }
 	  }
-	 
+
 		public static File createLog() {
 			File reportFolder =  new File(System.getProperty("user.dir") + File.separator + "Report" + File.separator + 
 		    		String.valueOf(new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())));

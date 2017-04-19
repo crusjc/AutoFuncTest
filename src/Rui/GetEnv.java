@@ -4,7 +4,7 @@ import  java.io.*;
 import  jxl.Workbook;
 
 public class GetEnv {
-	public static void getEnv(String child) {
+	public void getEnv(String child) {
 		File xls = new File("Env",child);
 		File xml = new File("Env",child.replace("xls", "xml"));
 		if(xml.exists()) xml.delete();

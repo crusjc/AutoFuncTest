@@ -8,20 +8,22 @@ import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
 public class Env {
-	public static HashMap<String, String> hm = new HashMap<String, String>();
 	@SuppressWarnings("unchecked")
-	public static HashMap<String, String> env() {
+	public HashMap<String, String> env() {
+		HashMap<String, String> hm = new HashMap<String, String>();
 		try {
 			Element ele = new SAXReader().read(new File("Env","env.xml")).getRootElement().element("env_info");
 			List<Element> envInfo = ele.elements();
+
 			for(Element url:envInfo) {
 				if(url.getName().equals("env")) hm.put(url.getName(),url.getText());
 				hm.put(url.getName(),url.getText());
-			}	
+			}
 		} catch (DocumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} 
-		return hm;
+		} finally {
+			return hm;
+		}
 	}
 }

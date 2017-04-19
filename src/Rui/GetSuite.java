@@ -12,7 +12,7 @@ import org.dom4j.io.OutputFormat;
 import org.dom4j.io.XMLWriter;
 
 public class GetSuite {
-	public static void getSuite(String child) {
+	public void getSuite(String child) {
 		File suiteXls = new File("TestSuite",child);
 		File suiteXml = new File("TestSuite",child.replace("xls", "xml"));
 		if(suiteXml.exists()) suiteXml.delete();

@@ -1,40 +1,32 @@
 package Rui;
-
-import static Rui.TestSuite.testSuite;
 import static Rui.Interaction.interaction;
 import java.io.File;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import org.junit.*;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeDriverService;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.chrome.*;
 import org.openqa.selenium.WebDriver;
 import java.util.concurrent.TimeUnit;
 
 @RunWith(Parameterized.class)
 public class Mummy {
-	private static File reportFolder = Tools.createLog();
+
 	private static ChromeDriverService service;
-	private static WebDriver driver;
-	private static List<String> TestCases = testSuite();
-	private static List<Element> step;
-	private static String exeCase;
-	private static String sys;
-	private static String caseName;
-	private static File snapcase;
-	private static ChromeOptions options;
+	private static List<String> TestCases = new TestSuite().testSuite();
+
+	private  File reportFolder = Tools.createLog();
+	private WebDriver driver;
+	private List<Element> step;
+	private String exeCase;
+	private String sys;
+	private String caseName;
+	private File snapcase;
+	private ChromeOptions options;
 	private Element stepEle;
 	
 	 public Mummy(String _case,String number) {

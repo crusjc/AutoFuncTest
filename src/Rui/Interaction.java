@@ -3,8 +3,7 @@ package Rui;
 import org.junit.Assert;
 import static org.junit.Assert.*;
 import java.io.File;
-import java.util.Date;
-import java.util.HashMap;
+import java.util.*;
 
 import org.dom4j.Element;
 import org.openqa.selenium.*;
@@ -13,25 +12,30 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static Rui.Env.env;
 import static Rui.Tools.snapShot;
-import static Rui.Elements.webEle;
 
 public class Interaction {
-	private static HashMap<String,String> varMap = new HashMap<String,String>();
-	private static String stepNo;
-	private static String obj;
-	private static String _action;
-	private static String par;
-	private static String Expect;
-	private static By by;
+
 	public static void interaction(WebDriver driver,Element step,File snapcase) {
-		stepNo = step.attributeValue("index");
-		obj = step.element("Object").getText();
-		_action = step.element("Action").getText();
-		par = step.element("parameter").getText();
-		Expect = step.element("ExpectedResult").getText();
-		//by实例化，用作显示判断
+        HashMap<String,String> varMap = new HashMap<String,String>();
+	    HashMap ev = new Env().env();
+		String stepNo = step.attributeValue("index");
+		String obj = step.element("Object").getText();
+        String _action = step.element("Action").getText();
+        String par;
+		String Expect;
+        try {
+            par =  step.element("parameter").getText();
+        } catch(Exception e) {
+            par = "";
+        }
+
+        try {
+            Expect = step.element("ExpectedResult").getText();
+        } catch(Exception e) {
+            Expect = "";
+        }
+
 		if(obj.isEmpty()) {
 			switch (_action) {
 				/*
@@ -40,7 +44,7 @@ public class Interaction {
 				case "get":
 					System.out.println("step " + stepNo + " ------> "
 							+ "login " + par);
-					driver.get(env().get(par));
+					driver.get((String) ev.get(par));
 					break;
 				/*
 				* 强制等待
@@ -60,7 +64,8 @@ public class Interaction {
 				 *给一个变量赋值，之后的步骤可以调用
 				 **/
 				case "setValue":
-					System.out.println("set value for " + par + " : " + Expect);
+					System.out.println("step " + stepNo + " ------> "
+                            + "set value for " + par + " : " + Expect);
 					if(Expect.equals("now")) {
 						varMap.put(par,String.valueOf(new Date().getTime()));
 					} else {
@@ -72,10 +77,12 @@ public class Interaction {
                 * */
 				case "acceptAlert":
 				    try {
-                        System.out.println("弹框点击确认");
+                        System.out.println("step " + stepNo + " ------> "
+                                +"弹框点击确认");
                         driver.switchTo().alert().accept();
                     } catch (NoAlertPresentException e) {
-                        System.out.println("没有弹出框");
+                        System.out.println("step " + stepNo + " ------> "
+                                +"没有弹出框");
                         snapShot((TakesScreenshot)driver, snapcase);
                         Assert.fail();
                     }
@@ -85,22 +92,27 @@ public class Interaction {
                 * */
 				case "dismissAlert":
                     try {
-                        System.out.println("弹框点击取消");
+                        System.out.println("step " + stepNo + " ------> "
+                                +"弹框点击取消");
                         driver.switchTo().alert().dismiss();
                     } catch (NoAlertPresentException e) {
-                        System.out.println("没有弹出框");
+                        System.out.println("step " + stepNo + " ------> "
+                                +"没有弹出框");
                         snapShot((TakesScreenshot)driver, snapcase);
                         Assert.fail();
                     }
 					break;
 
 				default:
-					System.out.println("step: " + stepNo + " has no correct method");
+					System.out.println("step " + stepNo + " ------> "
+                            +" has no correct method");
 					snapShot((TakesScreenshot)driver, snapcase);
 					Assert.fail();
 			}
 		} else {
-			WebElement we = webEle(driver,step,snapcase);
+            Elements eles = new Elements();
+			WebElement we = eles.webEle(driver,step,snapcase);
+			By by = eles.getBy(step);
 			Actions action = new Actions(driver);
 				switch (_action) {
 				    /*
@@ -174,31 +186,69 @@ public class Interaction {
                     * 获取元素的内容，赋予一个变量
                     * */
 					case "setUIValue":
-						System.out.println("set UIValue for " + obj + " : " + we.getText());
+						System.out.println("step " + stepNo + " ------> "
+                                +"set UIValue for " + obj + " : " + we.getText());
 						varMap.put(obj,we.getText());
 						break;
                     case "waitElementClickable":
-                        System.out.println(Expect+"秒内,待"+we.toString()+"可点击");
-                        WebDriverWait wait = new WebDriverWait(driver, Long.parseLong((Expect)));
+                        System.out.println("step " + stepNo + " ------> "
+                                + par+"秒内,待"+we.toString()+"可点击");
+                        WebDriverWait wait = new WebDriverWait(driver, Long.parseLong((par)));
                         wait.until(ExpectedConditions.elementToBeClickable(we));
                         break;
                     case "waitElementSelected":
-                        System.out.println(Expect+"秒内,待"+we.toString()+"可被选中");
-                        wait = new WebDriverWait(driver, Long.parseLong((Expect)));
+                        System.out.println("step " + stepNo + " ------> "
+                                + par+"秒内,待"+we.toString()+"可被选中");
+                        wait = new WebDriverWait(driver, Long.parseLong((par)));
                         wait.until(ExpectedConditions.elementToBeSelected(we));
                         break;
                     case "waitElementVisible":
-                        System.out.println(Expect+"秒内,待"+we.toString()+"显示");
-                        wait = new WebDriverWait(driver, Long.parseLong((Expect)));
+                        System.out.println("step " + stepNo + " ------> "
+                                + par+"秒内,待"+we.toString()+"显示");
+                        wait = new WebDriverWait(driver, Long.parseLong((par)));
                         wait.until(ExpectedConditions.visibilityOfElementLocated(by));
                         break;
                     case "waitElementPresence":
-                        System.out.println(Expect+"秒内,待"+we.toString()+"出现");
-                        wait = new WebDriverWait(driver, Long.parseLong((Expect)));
+                        System.out.println("step " + stepNo + " ------> "
+                                + par+"秒内,待"+we.toString()+"出现");
+                        wait = new WebDriverWait(driver, Long.parseLong((par)));
                         wait.until(ExpectedConditions.presenceOfElementLocated(by));
                         break;
+                    case "waitTextLoading":
+                        System.out.println("step " + stepNo + " ------> "
+                                + par+" 秒内,待 "+we.toString()+ " 改变初始值 "+ Expect);
+                        int sleepTime = 1;
+                        while ((we.getText().equals(par))) {
+                            if (sleepTime > Integer.parseInt(par))
+                                break;
+                            try
+                            {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e)
+                            {
+                                e.printStackTrace();
+                            }
+                            sleepTime++;
+                        }
+                        break;
+                    case "switchToFrame":
+                        System.out.println("step " + stepNo + " ------> "
+                                + "跳转到第 "+ Integer.parseInt(obj) + " 个iframe");
+                    	driver.switchTo().frame(Integer.parseInt(obj));
+                        break;
+                    case "switchToParent":
+                        System.out.println("step " + stepNo + " ------> "
+                                + "跳回上层iframe");
+                        driver.switchTo().parentFrame();
+                        break;
+                    case "switchToDefault":
+                        System.out.println("step " + stepNo + " ------> "
+                                + "跳回主页面");
+                        driver.switchTo().defaultContent();
+                        break;
 					default:
-						System.out.println(we.toString() + "has no correct method");
+						System.out.println("step " + stepNo + " ------> "
+                                + we.toString() + "has no correct method");
 						snapShot((TakesScreenshot)driver, snapcase);
 						Assert.fail();
 				}	
