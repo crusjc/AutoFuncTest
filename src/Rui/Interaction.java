@@ -233,8 +233,8 @@ public class Interaction {
                         break;
                     case "switchToFrame":
                         System.out.println("step " + stepNo + " ------> "
-                                + "跳转到第 "+ Integer.parseInt(obj) + " 个iframe");
-                    	driver.switchTo().frame(Integer.parseInt(obj));
+                                + "跳转到 "+ we + " 的iframe");
+                    	driver.switchTo().frame(we);
                         break;
                     case "switchToParent":
                         System.out.println("step " + stepNo + " ------> "
