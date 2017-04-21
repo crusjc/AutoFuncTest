@@ -9,11 +9,7 @@ import java.util.List;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 
 public class Elements {
 	@SuppressWarnings("unchecked")
@@ -36,27 +32,19 @@ public class Elements {
 			Assert.fail();
 		}		
 		WebElement webEle = null;
-		if((step2PageElement(step).attributeValue("id")!= null) && (!step2PageElement(step).attributeValue("id").isEmpty())){
+        webEle = driver.findElement(getBy(step));
 			try {
-				webEle = driver.findElement(By.id(step2PageElement(step).attributeValue("id")));
+				webEle = driver.findElement(getBy(step));
 			} catch (NoSuchElementException e) {
 				System.out.println(e.toString());
 				snapShot((TakesScreenshot)driver, snapcase);
 				Assert.fail();
+			} catch (StaleElementReferenceException e) {
+                System.out.println(e.toString());
+                snapShot((TakesScreenshot)driver, snapcase);
+                Assert.fail();
 			}
-		}	else if((step2PageElement(step).attributeValue("xpath")!= null) && (!step2PageElement(step).attributeValue("xpath").isEmpty())){
-			try {
-				webEle = driver.findElement(By.xpath(step2PageElement(step).attributeValue("xpath")));
-			} catch (NoSuchElementException e) {
-				System.out.println(e.toString());
-				snapShot((TakesScreenshot)driver, snapcase);
-				Assert.fail();
-			}
-		}	else {
-			System.out.println("only get the webElement by id or xpath now,please check the xml page");
-			snapShot((TakesScreenshot)driver, snapcase);
-			Assert.fail();
-		}
+
 		
 		if(webEle == null) {
 			System.out.println("can not find webElement in browser,please check system");

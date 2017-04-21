@@ -193,26 +193,22 @@ public class Interaction {
                     case "waitElementClickable":
                         System.out.println("step " + stepNo + " ------> "
                                 + par+"秒内,待"+we.toString()+"可点击");
-                        WebDriverWait wait = new WebDriverWait(driver, Long.parseLong((par)));
-                        wait.until(ExpectedConditions.elementToBeClickable(we));
+                        new WebDriverWait(driver, Long.parseLong((par))).until(ExpectedConditions.elementToBeClickable(we));
                         break;
                     case "waitElementSelected":
                         System.out.println("step " + stepNo + " ------> "
                                 + par+"秒内,待"+we.toString()+"可被选中");
-                        wait = new WebDriverWait(driver, Long.parseLong((par)));
-                        wait.until(ExpectedConditions.elementToBeSelected(we));
+                        new WebDriverWait(driver, Long.parseLong((par))).until(ExpectedConditions.elementToBeSelected(we));
                         break;
                     case "waitElementVisible":
                         System.out.println("step " + stepNo + " ------> "
                                 + par+"秒内,待"+we.toString()+"显示");
-                        wait = new WebDriverWait(driver, Long.parseLong((par)));
-                        wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+                        new WebDriverWait(driver, Long.parseLong((par))).until(ExpectedConditions.visibilityOfElementLocated(by));
                         break;
                     case "waitElementPresence":
                         System.out.println("step " + stepNo + " ------> "
                                 + par+"秒内,待"+we.toString()+"出现");
-                        wait = new WebDriverWait(driver, Long.parseLong((par)));
-                        wait.until(ExpectedConditions.presenceOfElementLocated(by));
+                        new WebDriverWait(driver, Long.parseLong((par))).until(ExpectedConditions.presenceOfElementLocated(by));
                         break;
                     case "waitTextLoading":
                         System.out.println("step " + stepNo + " ------> "
