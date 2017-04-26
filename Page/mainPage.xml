@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!--  sample
+<element  xpath = "//*[text()='请选择疗程卡项目']/following-sibling::div[2]/button[1]">confirmAddComboItem</element>
+<element xpath = "//span[contains(@class,'highlight totalMoney')]">inventoryAssets</element>
+<element  xpath = "//*[@id='code_view_product' and @class='code_view out']//div[text()='非卖品']">subNoSaleExp</element>
+<element xpath = "//*[text() = '项目三项']/parent::*/following-sibling::div[5]">additem3button</element>
+<element xpath = "//td[text()='管理员']//preceding-sibling::td[2]/input">selectAdminRight</element>
+-->
+
+<elements>
+    <!-- 主页面-->
+    <!--报价管理-->
+    <element xpath = "//div[text()='报价管理']/parent::*/div[2]/a">quoteManagement</element>
+    <!--报价测试-->
+    <element xpath = "//div[text()='报价管理']/parent::*/following-sibling::div[1]//li[1]/div">quoteTest</element>
+</elements>

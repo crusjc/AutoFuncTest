@@ -1,19 +1,50 @@
 package Rui;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeDriverService;
+import org.openqa.selenium.chrome.ChromeOptions;
+
+import javax.xml.ws.Service;
+import java.io.File;
+import java.util.concurrent.TimeUnit;
+
 public class Test {
 	public static void main(String[] args) throws Exception{
+        ChromeDriverService service = new ChromeDriverService.Builder()
+                .usingDriverExecutable(new File("./tools/chromedriver.exe"))
+                .usingAnyFreePort()
+                .build();
+        service.start();
+        ChromeOptions options = new ChromeOptions();
+        options.setBinary("C:/Users/Administrator/AppData/Local/Google/Chrome/Application/chrome.exe");
+        WebDriver driver = new ChromeDriver(service,options);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
+        driver.get("http://58.215.167.30/anneng/");
+        driver.findElement(By.id("email")).sendKeys("admin");
+        driver.findElement(By.id("pwd")).sendKeys("ne888888");
+        Thread.sleep(5000);
+        driver.findElement(By.id("submit_btn")).click();
+        driver.findElement(By.xpath("//div[text()='报价管理']/parent::*/div[2]/a")).click();
+        Thread.sleep(3000);
+        driver.findElement(By.xpath("//div[text()='报价管理']/parent::*/following-sibling::div[1]//li[1]/div")).click();
+        Thread.sleep(3000);
+        driver.switchTo().frame(driver.findElement(By.xpath("//*[@id='tab-box']/div[2]/div[2]/div/iframe")));
+        driver.findElement(By.xpath("//label[text()='使用网点']/following-sibling::span[1]/input[1]")).sendKeys("ne888888");
+        Thread.sleep(5000);
+        driver.quit();
+        service.stop();
 		//获取属性，设置属性
 		//执行js
-        //上传文件 (Upload File) 上传文件的元素操作
+		//上传文件 (Upload File) 上传文件的元素操作
+		//解决日期插件问题
 		//使用log
-		//浏览器信息、驱动定制化
 		//重试机制
-        //debug机制
+		//debug机制
 		//分布式
-        //发送邮件
-        //解决日期插件问题
-
-
+		//发送邮件
         /*
         *13.   双击按钮
 WebElement inputBox =driver.findElement(by.id(“kw”))//百度首页文本框

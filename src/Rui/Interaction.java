@@ -53,7 +53,7 @@ public class Interaction {
 					try {
 						System.out.println("step " + stepNo + " ------> sleep "
 								+ par);
-						Thread.sleep(Integer.parseInt(par));
+						Thread.sleep(Long.parseLong(par));
 					} catch (Exception e) {
 						System.out.println(e.toString());
 						snapShot((TakesScreenshot)driver, snapcase);
@@ -102,7 +102,21 @@ public class Interaction {
                         Assert.fail();
                     }
 					break;
-
+				case "switchToParent":
+					System.out.println("step " + stepNo + " ------> "
+							+ "跳回上层iframe");
+					driver.switchTo().parentFrame();
+					break;
+				case "switchToDefault":
+					System.out.println("step " + stepNo + " ------> "
+							+ "跳回主页面");
+					driver.switchTo().defaultContent();
+					break;
+				case "waitPageTitle":
+                    System.out.println("step " + stepNo + " ------> "
+                            + par + "秒内,待标题显示");
+                    new WebDriverWait(driver, Long.parseLong((par))).until(ExpectedConditions.titleIs(Expect));
+					break;
 				default:
 					System.out.println("step " + stepNo + " ------> "
                             +" has no correct method");
@@ -170,7 +184,7 @@ public class Interaction {
                     /*
                     * 断言对比
                     * */
-					case "validate":
+					case "assertEquals":
 						System.out.println("step " + stepNo + " ------> validate "
 								+ obj + " expected result : " 
 								+ Expect + " actual result : "
@@ -192,29 +206,29 @@ public class Interaction {
 						break;
                     case "waitElementClickable":
                         System.out.println("step " + stepNo + " ------> "
-                                + par+"秒内,待"+we.toString()+"可点击");
+                                + par + "秒内,待" + obj + "可点击");
                         new WebDriverWait(driver, Long.parseLong((par))).until(ExpectedConditions.elementToBeClickable(we));
                         break;
                     case "waitElementSelected":
                         System.out.println("step " + stepNo + " ------> "
-                                + par+"秒内,待"+we.toString()+"可被选中");
+                                + par + "秒内,待" + obj + "可被选中");
                         new WebDriverWait(driver, Long.parseLong((par))).until(ExpectedConditions.elementToBeSelected(we));
                         break;
                     case "waitElementVisible":
                         System.out.println("step " + stepNo + " ------> "
-                                + par+"秒内,待"+we.toString()+"显示");
+                                + par + "秒内,待" + obj + "显示");
                         new WebDriverWait(driver, Long.parseLong((par))).until(ExpectedConditions.visibilityOfElementLocated(by));
                         break;
                     case "waitElementPresence":
                         System.out.println("step " + stepNo + " ------> "
-                                + par+"秒内,待"+we.toString()+"出现");
+                                + par + "秒内,待" + obj + "出现");
                         new WebDriverWait(driver, Long.parseLong((par))).until(ExpectedConditions.presenceOfElementLocated(by));
                         break;
                     case "waitTextLoading":
                         System.out.println("step " + stepNo + " ------> "
-                                + par+" 秒内,待 "+we.toString()+ " 改变初始值 "+ Expect);
+                                + par +" 秒内,待 " + obj + " 改变初始值 "+ Expect);
                         int sleepTime = 1;
-                        while ((we.getText().equals(par))) {
+                        while ((we.getText().equals(Expect))) {
                             if (sleepTime > Integer.parseInt(par))
                                 break;
                             try
@@ -229,22 +243,12 @@ public class Interaction {
                         break;
                     case "switchToFrame":
                         System.out.println("step " + stepNo + " ------> "
-                                + "跳转到 "+ we + " 的iframe");
+                                + "跳转到 " + obj + " 的iframe");
                     	driver.switchTo().frame(we);
-                        break;
-                    case "switchToParent":
-                        System.out.println("step " + stepNo + " ------> "
-                                + "跳回上层iframe");
-                        driver.switchTo().parentFrame();
-                        break;
-                    case "switchToDefault":
-                        System.out.println("step " + stepNo + " ------> "
-                                + "跳回主页面");
-                        driver.switchTo().defaultContent();
                         break;
 					default:
 						System.out.println("step " + stepNo + " ------> "
-                                + we.toString() + "has no correct method");
+                                + obj + "has no correct method");
 						snapShot((TakesScreenshot)driver, snapcase);
 						Assert.fail();
 				}	

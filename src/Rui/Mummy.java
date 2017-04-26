@@ -18,7 +18,8 @@ public class Mummy {
 
 	private static ChromeDriverService service;
 	private static List<String> TestCases = new TestSuite().testSuite();
-
+	private static String chromePath = new Env().env().get("chromePath");
+    private static String chromeDriverPath = new Env().env().get("chromeDriverPath");
 	private  File reportFolder = Tools.createLog();
 	private WebDriver driver;
 	private List<Element> step;
@@ -48,7 +49,7 @@ public class Mummy {
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	    service = new ChromeDriverService.Builder()
-        .usingDriverExecutable(new File("./tools/chromedriver.exe"))
+        .usingDriverExecutable(new File(chromeDriverPath))
         .usingAnyFreePort()
         .build();
 	    service.start();
@@ -63,7 +64,7 @@ public class Mummy {
 	@Before
 	public void setUp() throws Exception {
 		options = new ChromeOptions();
-		options.setBinary("C:/Users/Administrator/AppData/Local/Google/Chrome/Application/chrome.exe");
+		options.setBinary(chromePath);
 		driver = new ChromeDriver(service,options);
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);

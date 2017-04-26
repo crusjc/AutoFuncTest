@@ -6,19 +6,133 @@
    <Action>get</Action>	
    <parameter>smartPricing</parameter>	
   </STEP>	
-  <STEP index="3" Category="interaction">	
+  <STEP index="2" Category="interaction">	
    <Object PST="smartPricing_login">account</Object>	
    <Action>sendkeys</Action>	
    <parameter>admin</parameter>	
   </STEP>	
-  <STEP index="5" Category="interaction">	
+  <STEP index="3" Category="interaction">	
    <Object PST="smartPricing_login">password</Object>	
    <Action>sendkeys</Action>	
    <parameter>ne888888</parameter>	
   </STEP>	
-  <STEP index="7" Category="interaction">	
+  <STEP index="4" Category="interaction">	
+   <Object PST=""></Object>	
+   <Action>sleep</Action>	
+   <parameter>5000</parameter>	
+  </STEP>	
+  <STEP index="5" Category="interaction">	
    <Object PST="smartPricing_login">submit_btn</Object>	
    <Action>click</Action>	
+  </STEP>	
+  <STEP index="6" Category="interaction">	
+   <Object PST=""></Object>	
+   <Action>sleep</Action>	
+   <parameter>5000</parameter>	
+  </STEP>	
+  <STEP index="7" Category="interaction">	
+   <Object PST=""></Object>	
+   <Action>waitPageTitle</Action>	
+   <parameter>30</parameter>	
+   <ExpectedResult>定价管理系统</ExpectedResult>	
+  </STEP>	
+  <STEP index="1" Category="interaction">	
+   <Object PST="mainPage">quoteManagement</Object>	
+   <Action>click</Action>	
+  </STEP>	
+  <STEP index="2" Category="interaction">	
+   <Object PST="mainPage">quoteTest</Object>	
+   <Action>waitElementClickable</Action>	
+   <parameter>3</parameter>	
+  </STEP>	
+  <STEP index="4-1" Category="interaction">	
+   <Object PST=""></Object>	
+   <Action>sleep</Action>	
+   <parameter>5000</parameter>	
+  </STEP>	
+  <STEP index="3" Category="interaction">	
+   <Object PST="mainPage">quoteTest</Object>	
+   <Action>click</Action>	
+  </STEP>	
+  <STEP index="4" Category="interaction">	
+   <Object PST="quoteTest">quoteTestIframe</Object>	
+   <Action>waitElementPresence</Action>	
+   <parameter>3</parameter>	
+  </STEP>	
+  <STEP index="5" Category="interaction">	
+   <Object PST="quoteTest">quoteTestIframe</Object>	
+   <Action>switchToFrame</Action>	
+  </STEP>	
+  <STEP index="6" Category="interaction">	
+   <Object PST="quoteTest">useSite</Object>	
+   <Action>sendkeys</Action>	
+   <parameter>直营财务中心</parameter>	
+  </STEP>	
+  <STEP index="7" Category="interaction">	
+   <Object PST="quoteTest">fromSite</Object>	
+   <Action>sendkeys</Action>	
+   <parameter>北京朝阳</parameter>	
+  </STEP>	
+  <STEP index="8" Category="interaction">	
+   <Object PST="quoteTest">toSite</Object>	
+   <Action>sendkeys</Action>	
+   <parameter>上海徐家汇</parameter>	
+  </STEP>	
+  <STEP index="9" Category="interaction">	
+   <Object PST="quoteTest">weight</Object>	
+   <Action>sendkeys</Action>	
+   <parameter>2.00</parameter>	
+  </STEP>	
+  <STEP index="10" Category="interaction">	
+   <Object PST="quoteTest">date</Object>	
+   <Action>clear</Action>	
+  </STEP>	
+  <STEP index="11" Category="interaction">	
+   <Object PST="quoteTest">date</Object>	
+   <Action>sendkeys</Action>	
+   <parameter>2017-04-26</parameter>	
+  </STEP>	
+  <STEP index="12" Category="interaction">	
+   <Object PST="quoteTest">time</Object>	
+   <Action>clear</Action>	
+  </STEP>	
+  <STEP index="13" Category="interaction">	
+   <Object PST="quoteTest">time</Object>	
+   <Action>sendkeys</Action>	
+   <parameter>10:26:18</parameter>	
+  </STEP>	
+  <STEP index="14" Category="interaction">	
+   <Object PST="quoteTest">calculateButton</Object>	
+   <Action>click</Action>	
+  </STEP>	
+  <STEP index="15" Category="interaction">	
+   <Object PST="quoteTest">fee</Object>	
+   <Action>waitTextLoading</Action>	
+   <parameter>10</parameter>	
+   <ExpectedResult>0.0</ExpectedResult>	
+  </STEP>	
+  <STEP index="16" Category="interaction">	
+   <Object PST="quoteTest">fee</Object>	
+   <Action>assertEquals</Action>	
+   <ExpectedResult>5.57</ExpectedResult>	
+  </STEP>	
+  <STEP index="17" Category="interaction">	
+   <Object PST=""></Object>	
+   <Action>switchToDefault</Action>	
+  </STEP>	
+  <STEP index="18" Category="interaction">	
+   <Object PST="mainPage">quoteManagement</Object>	
+   <Action>waitElementClickable</Action>	
+   <parameter>1</parameter>	
+  </STEP>	
+  <STEP index="19" Category="interaction">	
+   <Object PST="mainPage">quoteManagement</Object>	
+   <Action>click</Action>	
+  </STEP>	
+  <STEP index="20" Category="interaction">	
+   <Object PST=""></Object>	
+   <Action>sleep</Action>	
+   <parameter>5000</parameter>	
   </STEP>	
  </STEPS>	
 </CASE>
