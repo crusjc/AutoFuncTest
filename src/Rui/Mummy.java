@@ -69,6 +69,7 @@ public class Mummy {
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
+		//exeCase.split("::")[1].split("xml")[0]          用例名
 	    snapcase = new File(reportFolder,exeCase.split("::")[1].split("xml")[0] + "png");
 	    step = new SAXReader().read(new File("TestCase/"+ sys,caseName)).getRootElement().element("STEPS").elements();
 	    System.out.println("caseName : " + exeCase.split("::")[1].split("\\.")[0]);
