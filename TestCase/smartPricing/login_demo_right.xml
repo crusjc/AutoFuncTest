@@ -124,7 +124,7 @@
   <STEP index="19" Category="interaction">	
    <Object PST="quoteTest">fee</Object>	
    <Action>assertEquals</Action>	
-   <ExpectedResult>5.57</ExpectedResult>	
+   <ExpectedResult>5.55</ExpectedResult>	
   </STEP>	
   <STEP index="20" Category="interaction">	
    <Object PST=""></Object>	

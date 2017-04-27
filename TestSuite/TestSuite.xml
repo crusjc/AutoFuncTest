@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TestSuite><env167><smartPricing status="0"><case status="0">demo.xls</case><case status="1">login_demo.xls</case></smartPricing></env167></TestSuite>
+<TestSuite><env167><smartPricing status="0"><case status="0">demo.xls</case><case status="1">login_demo.xls</case><case status="1">login_demo_right.xls</case></smartPricing></env167></TestSuite>
