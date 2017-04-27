@@ -22,9 +22,9 @@ public class Tools {
 	    }
 	  }
 
-		public static File createLog() {
-			File reportFolder =  new File(System.getProperty("user.dir") + File.separator + "Report" + File.separator + 
-		    		String.valueOf(new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())));
+		public static File createLog(int number) {
+			File reportFolder =  new File(System.getProperty("user.dir") + File.separator + "Report" + File.separator +
+					"test[" + number + "]_"+ String.valueOf(new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())));
 		    File reportLog = new File(reportFolder,"SystemOut.txt");
 		    reportFolder.mkdir();
 		    try {

@@ -20,7 +20,6 @@ public class Mummy {
 	private static List<String> TestCases = new TestSuite().testSuite();
 	private static String chromePath = new Env().env().get("chromePath");
     private static String chromeDriverPath = new Env().env().get("chromeDriverPath");
-	private  File reportFolder = Tools.createLog();
 	private WebDriver driver;
 	private List<Element> step;
 	private String exeCase;
@@ -29,11 +28,12 @@ public class Mummy {
 	private File snapcase;
 	private ChromeOptions options;
 	private Element stepEle;
-	
+	private int _number;
 	 public Mummy(String _case,String number) {
 		 sys = _case.split("::")[0];
 		 exeCase = _case.replace("xls","xml");
 		 caseName = exeCase.split("::")[1];
+         _number = Integer.parseInt(number);
      }
 	
 	@Parameters
@@ -70,7 +70,7 @@ public class Mummy {
 		driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 		//exeCase.split("::")[1].split("xml")[0]          用例名
-	    snapcase = new File(reportFolder,exeCase.split("::")[1].split("xml")[0] + "png");
+	    snapcase = new File(Tools.createLog(_number),exeCase.split("::")[1].split("xml")[0] + "png");
 	    step = new SAXReader().read(new File("TestCase/"+ sys,caseName)).getRootElement().element("STEPS").elements();
 	    System.out.println("caseName : " + exeCase.split("::")[1].split("\\.")[0]);
 	}
