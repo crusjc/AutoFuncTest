@@ -15,12 +15,22 @@
     <element xpath = "//*[@id='tab-box']/div[2]/div[2]/div/iframe">quoteTestIframe</element>
     <!--费用类型-->
     <element xpath = "//label[text()='费用类型']/following-sibling::span[1]/input[1]">feeType</element>
+    <!--打开费用类型列表-->
+    <element xpath = "//label[text()='费用类型']/parent::*//span[@class='combo-arrow']">openFeeType</element>>
+    <!--中转费选项-->
+    <element xpath = "//div[text()='收中转费']">feeTypeOption</element>
     <!--使用网点-->
     <element xpath = "//label[text()='使用网点']/following-sibling::span[1]/input[1]">useSite</element>
+    <!--使用网点弹框首个匹配结果-->
+    <element xpath = "//tr[@id='datagrid-row-r1-2-0']/td[@field='siteCode']">useResult</element>>
     <!--寄件网点-->
     <element xpath = "//label[text()='寄件网点']/following-sibling::span[1]/input[1]">fromSite</element>
+    <!--寄件网点弹框首个匹配结果-->
+    <element xpath = "//tr[@id='datagrid-row-r2-2-0']/td[@field='siteCode']">fromResult</element>>
     <!--派件网点-->
     <element xpath = "//label[text()='派件网点']/following-sibling::span[1]/input[1]">toSite</element>
+    <!--派件网点弹框首个匹配结果-->
+    <element xpath = "//tr[@id='datagrid-row-r3-2-0']/td[@field='siteCode']">toResult</element>>
     <!--服务方式-->
     <element xpath = "//label[text()='服务方式']/following-sibling::span[1]/input[1]">serviceType</element>
     <!--产品类型-->

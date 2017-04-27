@@ -125,8 +125,6 @@ public class Interaction {
 			}
 		} else {
             Elements eles = new Elements();
-			WebElement we = eles.webEle(driver,step,snapcase);
-			By by = eles.getBy(step);
 			Actions action = new Actions(driver);
 				switch (_action) {
 				    /*
@@ -135,7 +133,7 @@ public class Interaction {
 					case "perform":
 						System.out.println("step " + stepNo + " ------> "
 								+ obj + " perform ");
-						action.moveToElement(we).perform();
+						action.moveToElement(eles.webEle(driver,step,snapcase)).perform();
 						break;
                     /*
                     * 下拉框选择
@@ -146,9 +144,9 @@ public class Interaction {
 								+ _action + " "
 								+ par);
 						if(par.startsWith("::")) {
-							new Select(we).selectByVisibleText(varMap.get(par.split("::")[1]));
+							new Select(eles.webEle(driver,step,snapcase)).selectByVisibleText(varMap.get(par.split("::")[1]));
 						} else {
-							new Select(we).selectByVisibleText(par);
+							new Select(eles.webEle(driver,step,snapcase)).selectByVisibleText(par);
 						}
 						break;
                     /*
@@ -160,9 +158,9 @@ public class Interaction {
 								+ _action + " "
 								+ par);
 						if(par.startsWith("::")) {
-							we.sendKeys(varMap.get(par.split("::")[1]));
+                            eles.webEle(driver,step,snapcase).sendKeys(varMap.get(par.split("::")[1]));
 						} else {
-							we.sendKeys(par);
+                            eles.webEle(driver,step,snapcase).sendKeys(par);
 						}
 						break;
                     /*
@@ -171,7 +169,7 @@ public class Interaction {
 					case "click":
 						System.out.println("step " + stepNo + " ------> "
 								+ obj + " click ");
-						we.click();
+                        eles.webEle(driver,step,snapcase).click();
 						break;
                     /*
                     * 清空
@@ -179,7 +177,7 @@ public class Interaction {
 					case "clear":
 						System.out.println("step " + stepNo + " ------> "
 								+ obj + " clear ");
-						we.clear();
+                        eles.webEle(driver,step,snapcase).clear();
 						break;
                     /*
                     * 断言对比
@@ -188,47 +186,52 @@ public class Interaction {
 						System.out.println("step " + stepNo + " ------> validate "
 								+ obj + " expected result : " 
 								+ Expect + " actual result : "
-								+ we.getText());
+								+ eles.webEle(driver,step,snapcase).getText());
 						snapShot((TakesScreenshot)driver, snapcase);
 						if(Expect.startsWith("::")) {
-							assertEquals(varMap.get(Expect.split("::")[1]),we.getText());
+							assertEquals(varMap.get(Expect.split("::")[1]),eles.webEle(driver,step,snapcase).getText());
 						} else {
-							assertEquals(Expect,we.getText());
+							assertEquals(Expect,eles.webEle(driver,step,snapcase).getText());
 						}
 						break;
                     /*
                     * 获取元素的内容，赋予一个变量
                     * */
+					case "setUIText":
+						System.out.println("step " + stepNo + " ------> "
+                                +"set setUIText for " + obj + " : " + eles.webEle(driver,step,snapcase).getText());
+						varMap.put(obj,eles.webEle(driver,step,snapcase).getText());
+						break;
 					case "setUIValue":
 						System.out.println("step " + stepNo + " ------> "
-                                +"set UIValue for " + obj + " : " + we.getText());
-						varMap.put(obj,we.getText());
+								+"set setUIValue for " + obj + " : " + eles.webEle(driver,step,snapcase).getAttribute("value"));
+						varMap.put(obj,eles.webEle(driver,step,snapcase).getAttribute("value"));
 						break;
                     case "waitElementClickable":
                         System.out.println("step " + stepNo + " ------> "
                                 + par + "秒内,待" + obj + "可点击");
-                        new WebDriverWait(driver, Long.parseLong((par))).until(ExpectedConditions.elementToBeClickable(we));
+                        new WebDriverWait(driver, Long.parseLong((par))).until(ExpectedConditions.elementToBeClickable(eles.webEle(driver,step,snapcase)));
                         break;
                     case "waitElementSelected":
                         System.out.println("step " + stepNo + " ------> "
                                 + par + "秒内,待" + obj + "可被选中");
-                        new WebDriverWait(driver, Long.parseLong((par))).until(ExpectedConditions.elementToBeSelected(we));
+                        new WebDriverWait(driver, Long.parseLong((par))).until(ExpectedConditions.elementToBeSelected(eles.webEle(driver,step,snapcase)));
                         break;
                     case "waitElementVisible":
                         System.out.println("step " + stepNo + " ------> "
                                 + par + "秒内,待" + obj + "显示");
-                        new WebDriverWait(driver, Long.parseLong((par))).until(ExpectedConditions.visibilityOfElementLocated(by));
+                        new WebDriverWait(driver, Long.parseLong((par))).until(ExpectedConditions.visibilityOfElementLocated(eles.getBy(step)));
                         break;
                     case "waitElementPresence":
                         System.out.println("step " + stepNo + " ------> "
                                 + par + "秒内,待" + obj + "出现");
-                        new WebDriverWait(driver, Long.parseLong((par))).until(ExpectedConditions.presenceOfElementLocated(by));
+                        new WebDriverWait(driver, Long.parseLong((par))).until(ExpectedConditions.presenceOfElementLocated(eles.getBy(step)));
                         break;
                     case "waitTextLoading":
                         System.out.println("step " + stepNo + " ------> "
                                 + par +" 秒内,待 " + obj + " 改变初始值 "+ Expect);
                         int sleepTime = 1;
-                        while ((we.getText().equals(Expect))) {
+                        while ((eles.webEle(driver,step,snapcase).getText().equals(Expect))) {
                             if (sleepTime > Integer.parseInt(par))
                                 break;
                             try
@@ -244,7 +247,7 @@ public class Interaction {
                     case "switchToFrame":
                         System.out.println("step " + stepNo + " ------> "
                                 + "跳转到 " + obj + " 的iframe");
-                    	driver.switchTo().frame(we);
+                    	driver.switchTo().frame(eles.webEle(driver,step,snapcase));
                         break;
 					default:
 						System.out.println("step " + stepNo + " ------> "
