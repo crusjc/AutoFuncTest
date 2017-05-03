@@ -36,6 +36,7 @@ public class Test {
         Thread.sleep(5000);
         driver.quit();
         service.stop();
+        //add from company
 		//获取属性，设置属性
 		//执行js
 		//上传文件 (Upload File) 上传文件的元素操作
